@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>使い方 — 漫画進捗管理</title>
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+<link rel="icon" href="./icons/icon-192.png">
+<style>
+:root { --bg:#f6f5f2; --panel:#fff; --text:#23221f; --muted:#6f6c65; --line:#e0ddd6; --accent:#3d6fd6; --run:#2f86e0; --over:#d9534a; --done:#2e9b62; --warn:#c98a12; color-scheme: light; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#1b1b1d; --panel:#252528; --text:#e8e6e1; --muted:#9b988f; --line:#3a3a3f; --accent:#6b93ea; color-scheme: dark; } }
+:root[data-theme="dark"] { --bg:#1b1b1d; --panel:#252528; --text:#e8e6e1; --muted:#9b988f; --line:#3a3a3f; --accent:#6b93ea; color-scheme: dark; }
+* { box-sizing:border-box; }
+html { -webkit-text-size-adjust:100%; }
+body { margin:0; background:var(--bg); color:var(--text); font:16px/1.8 -apple-system,"Hiragino Sans","Yu Gothic UI","Meiryo UI",system-ui,sans-serif; }
+.wrap { max-width:820px; margin:0 auto; padding:max(20px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) 80px max(16px, env(safe-area-inset-left)); }
+.back { display:inline-block; margin-bottom:14px; color:var(--accent); text-decoration:none; font-weight:600; padding:6px 0; }
+h1 { font-size:24px; margin:0 0 4px; line-height:1.4; }
+h2 { font-size:19px; margin:40px 0 10px; padding-bottom:6px; border-bottom:2px solid var(--line); }
+h3 { font-size:16px; margin:22px 0 6px; }
+p, li { margin:6px 0; }
+.lead { color:var(--muted); }
+a { color:var(--accent); }
+.box { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:12px 16px; margin:12px 0; }
+.note { border-left:4px solid var(--warn); }
+.tip { border-left:4px solid var(--accent); }
+code, kbd { font-family:ui-monospace,Menlo,Consolas,monospace; background:var(--panel); border:1px solid var(--line); border-radius:4px; padding:0 5px; font-size:14px; }
+pre { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:10px 14px; overflow-x:auto; font-size:14px; line-height:1.6; }
+table { border-collapse:collapse; width:100%; margin:8px 0; font-size:15px; }
+th, td { border-bottom:1px solid var(--line); padding:6px 8px; text-align:left; vertical-align:top; }
+th { color:var(--muted); font-weight:500; white-space:nowrap; }
+.tag { display:inline-block; color:#fff; font-size:12px; font-weight:700; padding:0 7px; border-radius:4px; }
+.t-run { background:var(--run); } .t-over { background:var(--over); } .t-done { background:var(--done); }
+ol.steps > li { margin:10px 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<a class="back" href="./">← アプリに戻る</a>
+
+<h1>漫画進捗管理 の使い方</h1>
+<p class="lead">ページごとの作業時間を記録して、締切までの残り時間とこれからの作業量をひと目で確認するためのツールです。</p>
+
+<div class="box tip"><b>データについて</b><br>記録はすべて<b>この端末の中だけ</b>に保存され、インターネット上には送信されません。アカウント登録も不要です。その代わり、アプリを削除するとデータも消えるので、ときどき<a href="#backup">バックアップ</a>を書き出してください。</div>
+
+<h2 id="install">1. はじめに（ホーム画面に追加）</h2>
+<ol class="steps">
+  <li>iPad の <b>Safari</b> でこのページを開きます。</li>
+  <li>共有ボタン（□に↑のアイコン）→ <b>「ホーム画面に追加」</b>。</li>
+  <li>ホーム画面にできた <b>「漫画進捗」</b> のアイコンから起動します。</li>
+</ol>
+<div class="box note">
+  <ul style="margin:0;padding-left:20px">
+    <li><b>必ずホーム画面のアイコンから使ってください。</b> Safari のタブとホーム画面のアプリでは、データが別々に保存されます。</li>
+    <li>Safari のタブのままだと、しばらく使わないとデータが消されることがあります。ホーム画面のアプリなら自動では消えません。</li>
+    <li>一度開けば、インターネットに繋がっていなくても使えます。</li>
+  </ul>
+</div>
+
+<h2 id="flow">2. 基本の使い方</h2>
+<ol class="steps">
+  <li><b>「＋ 新しい話」</b>で作品名・話数・総ページ数・締切を入力。</li>
+  <li><b>「PDF取込」</b>で原稿PDFを選ぶ → 全ページのサムネイルが並びます。</li>
+  <li>各ページの<b>「目標」欄に時間を入力</b>（例 <code>6</code> や <code>6:30</code>）。</li>
+  <li>作業するページの <b>「▶ 作業開始」</b> → 画面が「作業中」表示に切り替わります。</li>
+  <li>作業が終わったら <b>「■ 停止」</b>。作業時間が記録され、一覧に戻ります。</li>
+  <li>そのページが仕上がったら <b>「完成」</b>。</li>
+  <li>作業の区切りに最新の原稿をPDFで書き出し、もう一度「PDF取込」 → サムネイルだけ最新になります（記録はそのまま）。</li>
+</ol>
+
+<h2 id="clip">3. CLIP STUDIO PAINT と一緒に使う</h2>
+<p>作業開始すると、アプリ全体が大きな「作業中」表示に切り替わります。</p>
+<pre>1話 8P
+● 01:42:18      ← 今回の作業時間
+
+このページ   4:18 / 6:00
+締切まで   2日 05:31
+今日残り      4:24   ← 今日の24:00まで
+概算残り     18:40   ← この話の残り作業量（目安）
+超過中         1P
+
+[ ■ 停止 ]  [ 一覧 ]</pre>
+<ul>
+  <li><b>CLIP STUDIO に切り替えても計測は続きます。</b> 時間は「開始時刻から今まで」で計算するので、このアプリを閉じていても正確です。</li>
+  <li>残り時間を見ながら描きたいときは、iPad の <b>Slide Over</b> や <b>Split View</b> でこのアプリを CLIP STUDIO の横に細く出しておくのがおすすめです（ステージマネージャ対応の iPad なら小さなウィンドウにもできます）。</li>
+  <li><b>一覧</b>：計測を続けたまま一覧に戻ります。上部の青いバーの「ミニ表示」で作業中表示に戻れます。</li>
+  <li>iPad では、他のアプリの上にこのアプリを重ねて表示することはできません。</li>
+</ul>
+<div class="box tip">CLIP STUDIO の複数ページ書き出しで原稿を PDF にして「ファイル」アプリに保存してから、このアプリの「PDF取込」で選んでください。Split View 中なら「ファイル」アプリから PDF をドラッグ＆ドロップすることもできます。</div>
+
+<h2 id="target">4. 目標時間</h2>
+<table>
+  <tr><th>入力</th><th>意味</th></tr>
+  <tr><td><code>6</code></td><td>6時間</td></tr>
+  <tr><td><code>6:30</code></td><td>6時間30分</td></tr>
+  <tr><td><code>1.5</code></td><td>1時間30分</td></tr>
+  <tr><td><code>90m</code>／<code>90分</code></td><td>90分</td></tr>
+</table>
+<ul>
+  <li>入力したら改行（return）で確定し、次のページの欄に移ります。</li>
+  <li><b>目標時間を入れていないページは作業開始できません</b>（未入力の欄は黄色）。</li>
+  <li>そのページで<b>最初に作業開始した時点の目標が固定</b>されます（🔒）。入力ミスはカードの <b>≡</b>（作業ログ）画面から直せます。</li>
+</ul>
+
+<h2 id="card">5. ページカードと集計の見かた</h2>
+<p>サムネイルは「容器」になっていて、<b>目標時間をどれだけ使ったか</b>（実績 ÷ 目標）に合わせて下から色が満ちていきます。完成度ではありません。100%になっても自動で完成にはなりません。</p>
+<table>
+  <tr><th><span class="tag t-run">計測中</span></th><td>今このページを計測しています</td></tr>
+  <tr><th><span class="tag t-over">超過中</span></th><td>未完成のまま目標時間を超えています</td></tr>
+  <tr><th><span class="tag t-done">完成</span></th><td>完成ボタンを押したページ。目標との差分（＋遅い／−早い）を表示</td></tr>
+  <tr><th>締切まで</th><td>締切日時までの時計上の残り時間</td></tr>
+  <tr><th>今日残り</th><td>今から今日の24:00まで</td></tr>
+  <tr><th>概算残り</th><td>未完成で目標以内のページの「目標 − 実績」の合計。超過中のページは残りが読めないので含めません</td></tr>
+  <tr><th>超過中</th><td>未完成のまま目標を超えているページ数</td></tr>
+</table>
+
+<h2 id="fix">6. 記録の修正・取消</h2>
+<ul>
+  <li>カードの <b>≡</b> で、そのページの作業ログを開き、開始・終了時刻の修正や削除ができます。</li>
+  <li>右上の <b>「↶ 取消」</b>で直前の操作を取り消せます（キーボード接続時は <kbd>⌘</kbd>+<kbd>Z</kbd>）。アプリを閉じると取消の履歴は消えます。</li>
+  <li>完成を間違えたときは「完成済」をもう一度押すと解除できます。</li>
+</ul>
+
+<h2 id="recover">7. アプリが閉じられていたとき</h2>
+<p>他のアプリを使っている間に、iPad がこのアプリを自動で終了させることがあります。<b>計測の記録は消えません。</b>次に開いたときに「計測中の作業があります」と表示されるので、選んでください。</p>
+<table>
+  <tr><th>計測を続ける</th><td>作業を続けていた場合。タイマーは開始時刻からそのまま進みます</td></tr>
+  <tr><th>今の時刻で終了して記録</th><td>今まで作業していたものとして記録</td></tr>
+  <tr><th>最後に見ていた時刻で記録</th><td>その時点で作業もやめていた場合</td></tr>
+  <tr><th>指定した時刻で記録</th><td>終了時刻を自分で指定</td></tr>
+</table>
+
+<h2 id="history">8. 履歴</h2>
+<p>上部の「履歴」で、<b>話別</b>（ページごとの目標・実績・差分）と<b>日別</b>（その日の総作業時間とログ）を確認できます。0時をまたいだ作業は日付ごとに分けて集計されます。</p>
+
+<h2 id="backup">9. バックアップ・CSV</h2>
+<p>右上の <b>「データ」</b> から操作します。</p>
+<ul>
+  <li><b>バックアップを書き出す</b>：全データ（サムネイル込み）を1つのファイルにします。「保存する」→ <b>「"ファイル"に保存」</b>で iCloud Drive などに保存してください。</li>
+  <li><b>バックアップから復元</b>：書き出したファイルを選ぶと、その内容に置き換わります（今のデータは消えます）。機種変更や、別の端末に移すときにも使えます。PC版（Windows）の <code>data.json</code> も読み込めます（サムネイルは PDF を取り込み直してください）。</li>
+  <li><b>CSV出力</b>：Excel・Numbers で開ける形式。作業ログが1行ずつ入ります。</li>
+  <li>最後のバックアップから7日以上経つと、画面上部でお知らせします。</li>
+</ul>
+
+<h2 id="faq">10. 困ったとき</h2>
+<h3>データが消えた・空になった</h3>
+<p>Safari のタブで開いていませんか？ ホーム画面のアイコンから開いてください（データが別になっています）。消えてしまった場合は、バックアップから復元してください。</p>
+<h3>PDFが読み込めない</h3>
+<p>パスワード付きのPDFは読み込めません。ページ数がとても多い・解像度がとても高いPDFは時間がかかります。</p>
+<h3>新しいバージョンにしたい</h3>
+<p>アプリを一度完全に閉じて（アプリスイッチャーで上にスワイプ）開き直すと、更新されます。</p>
+<h3>対応環境</h3>
+<p>iPadOS 16 以降の Safari を推奨します。Mac・Windows の Chrome / Edge / Safari でも使えます（データは端末ごとに別々です）。</p>
+
+<p style="margin-top:50px;color:var(--muted);font-size:13px">漫画進捗管理 v0.1 ／ データは端末内のみに保存されます。</p>
+</div>
+</body>
+</html>

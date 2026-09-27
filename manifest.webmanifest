@@ -1,0 +1,17 @@
+{
+  "name": "漫画進捗管理",
+  "short_name": "漫画進捗",
+  "description": "漫画制作のページごとの作業時間と締切までの残り時間を管理するツール。データは端末内だけに保存されます。",
+  "lang": "ja",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f3f2ef",
+  "theme_color": "#26282f",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
